@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 3000;
 const server = http.createServer((req, res) => {
   // dica: use req.method, req.url e req.headers para decidir a resposta
   if (req.method === "GET" && req.url === "/") {
-    res.writeHead(200, { "Content-Type": "text" });
+    res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
     res.end('Olá, mundo!'); 
     return;
   }
