@@ -93,6 +93,19 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Rota 10
+  if (req.method === 'GET' && req.url === '/secreto') {
+    if (req.headers['x-senha'] !== '1234') {
+      res.writeHead(401, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end('Não autorizado');
+      return;
+    }
+
+    res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('Acesso liberado');
+    return;
+  }
+
 });
 
 server.listen(PORT, () => console.log(`Servidor em http://localhost:${PORT}`));
