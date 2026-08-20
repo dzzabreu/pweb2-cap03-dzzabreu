@@ -70,6 +70,13 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Rota 08
+  if (req.method === "HEAD" && req.url === "/status") {
+    res.writeHead(200, { "X-Status": "ok"});
+    res.end();
+    return;
+  }
+
 });
 
 server.listen(PORT, () => console.log(`Servidor em http://localhost:${PORT}`));
