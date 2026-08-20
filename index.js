@@ -15,19 +15,21 @@ import http from 'node:http';
 const PORT = process.env.PORT || 3000;
 
 const server = http.createServer((req, res) => {
-
+// Rota 01
   if (req.method === "GET" && req.url === "/") {
     res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
     res.end('Olá, Mundo!'); 
     return;
   }
 
+  // Rota 02
   if (req.method === "GET" && req.url === "/sobre") {
     res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
     res.end('<h1>Sobre</h1>'); 
     return;
   }
 
+  // Rota 03
   if (req.method === "GET" && req.url.startsWith('/saudacao/')) {
     const nome = decodeURIComponent(req.url.split("/")[2]);
     res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
@@ -35,6 +37,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Rota 04
   if (req.method === "POST" && req.url === "/echo") {
     let body = "";
     req.on("data", (chunk) => body = body + chunk);
@@ -42,6 +45,14 @@ const server = http.createServer((req, res) => {
       res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
       res.end(body);
     });
+    return;
+  }
+
+  // Rota 05
+  if (req.method === "PUT" && req.url.startsWith("/itens/")) {
+    const id = decodeURIComponent(req.url.split("/")[2]);
+    res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end(`Item ${id} atualizado`);
     return;
   }
 
