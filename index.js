@@ -56,6 +56,13 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Rota 06
+  if (req.method === "DELETE" && req.url.startsWith("/itens/")) {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
+
 });
 
 server.listen(PORT, () => console.log(`Servidor em http://localhost:${PORT}`));
