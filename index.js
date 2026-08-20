@@ -63,6 +63,13 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Rota 07
+  if (req.method === "PATCH" && req.url === "/config") {
+    res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8"});
+    res.end("Configuração atualizada");
+    return;
+  }
+
 });
 
 server.listen(PORT, () => console.log(`Servidor em http://localhost:${PORT}`));
