@@ -35,6 +35,16 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (req.method === "POST" && req.url === "/echo") {
+    let body = "";
+    req.on("data", (chunk) => body = body + chunk);
+    req.on("end", () => {
+      res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+      res.end(body);
+    });
+    return;
+  }
+
 });
 
 server.listen(PORT, () => console.log(`Servidor em http://localhost:${PORT}`));
